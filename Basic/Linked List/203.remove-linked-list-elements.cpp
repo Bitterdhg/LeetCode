@@ -41,50 +41,77 @@ public:
 		cout<<"\n";
 	}		
 };
+// 法一： 迭代法
+// int main()
+// {
+// 	ListNode* head=new ListNode;
+// 	Solution ll;
+//     //创建链表
+// 	head->val=4;
+// 	head->next=NULL;
+// 	ll.createList(head);
+// 	ll.printList(head);
+//     int val = 4;
+// // ---------------------------
+//     // def
+// 	ListNode* dummyHead = new ListNode;      // 虚拟头指针
+// 	dummyHead -> next = head;
 
-int main()
-{
+// 	ListNode* bd = new ListNode;
+// 	bd = dummyHead; // 在这个指针 以前即指针本身 都是ok的，后面的不确定
+
+// 	ListNode* nex = new ListNode;
+
+// 	// begin
+// 	while (bd -> next != NULL) { // 确定链表不为空 且 没到最后一个！
+// 		nex = bd -> next;
+// 		if (nex -> val == val) { // 不ok nex改变
+// 			bd -> next = nex -> next;
+// 			delete nex;
+// 		} else {
+// 			bd = bd -> next; // 只有ok了 bd才会改变
+// 		}
+// 	}
+
+// 	// out
+// 	head = dummyHead -> next;
+// 	ll.printList(head);
+	
+// // ---------------------------
+// 	return 0;
+// }
+
+
+// 法二：递归
+ListNode* removeElement (ListNode* head, int val) {
+	if (head == NULL) {
+		return NULL;
+	} else {
+		if (head -> val == val) {
+			head -> next = removeElement (head -> next, val);
+			return head -> next;
+		} else {
+			head -> next = removeElement (head -> next, val);
+			return head;
+		} //if (head -> val == val)
+		// head -> next = removeElement (head -> next, val);
+	} //if (head == NULL)
+}
+int main() {
 	ListNode* head=new ListNode;
 	Solution ll;
     //创建链表
 	head->val=7;
 	head->next=NULL;
 	ll.createList(head);
-
-    //创建空链表
-    // head = NULL;
-
-    int val = 7;
-
-    // def
-    ListNode* cur;
-    ListNode* last;
-
-    // 0. add dummyHead
-    ListNode* dummyHead = new ListNode;
-    dummyHead -> next = head;
-
-    // 2. begin
-    if (head == NULL) ll.printList(head);
-    cur = head;
-    last = dummyHead;
-
-    while (cur -> next != NULL) {
-        // 1. val
-        // 1.1 == val
-        if (cur -> val == val) { 
-            last -> next = cur -> next;
-        } else {
-            last = cur;
-        }// if (cur -> val == val) 
-        cur = cur -> next;
-    }
-    // 3. last
-    if (cur -> val == val) {
-        last -> next = NULL;
-    }
-    head = dummyHead -> next;
 	ll.printList(head);
+    int val = 7;
+	//------------------------------------------
+	head = removeElement (head, val);
+	// 	// out
+	ll.printList(head);
+	
+// ---------------------------
 	return 0;
-}
 
+}
