@@ -93,78 +93,59 @@ using namespace std;
 
 //Approach 3:前缀和 + 二分查找
 // 时间复杂度：总时间复杂度是O(nlogn)
-// int main() {
-//         vector<int> nums = {2,3,1,2,4,3};
-//         int s = 7;
-//         int n = nums.size();
-//         if (n == 0) {
-//             return 0;
-//         }
-//         int ans = INT_MAX;
-//         vector<int> sums(n + 1, 0); 
-//         // 为了方便计算，令 size = n + 1 
-//         // sums[0] = 0 意味着前 0 个元素的前缀和为 0
-//         // sums[1] = A[0] 前 1 个元素的前缀和为 A[0]
-//         // 以此类推
-//         for (int i = 1; i <= n; i++) {
-//             sums[i] = sums[i - 1] + nums[i - 1];
-//         }
 
-//         for (int i = 1; i <= n; i++) {
-//             int target = s + sums[i - 1];
-//             auto bound = lower_bound(sums.begin(), sums.end(), target);
-//             if (bound != sums.end()) {
-//                 ans = min(ans, static_cast<int>((bound - sums.begin()) - (i - 1)));
-//             }
-//         }
-//         ans = (ans == INT_MAX) ? 0 : ans;
-//         cout << ans; 
-// }
-
-// 手写一个 前缀和 + 二分查找
-// 还未写完！！Todo
+// Todo upperbound
 
 
-// int lowerBound (int [] nums ,int [] sum, int sIdx, int target, int lftIdx,int ritIdx) {
-//     int midIdx;
-//     while (lftIdx <= ritIdx) { // 区间是[] 
-//         midIdx = (lftIdx + ritIdx) / 2;
-//         if (sum[midIdx] - sum[sIdx] >= target) { // left 
-//             ritIdx = midIdx - 1; 
-//         } else { //right
-//             lftIdx = midIdx + 1;
-//         } //if (sum[midIdx] >= target)
-//     }
-//     return midIdx;
-// }
+int main() {
+    int nums[6] = {2,3,1,2,4,3};
+    int target = 7;
+    int length = 6;
 
-// int main() {
-//     vector<int> nums = {2,3,1,2,4,3};
-//     int target = 7;
-//     // def
-//     int length = nums.size();
-//     int i;
-//     int upbd = length - 1; 
-//     int sum[100000 + 1];
-//     // 1. 前缀和
-//     sum[0] = 0;
-//     for (i = 1; i <= upbd + 1; i++) { // sum[1]表示前1个前缀和
-//         sum[i] += (sum[i - 1] + nums[i - 1]);
-//     }
-//     //for (i = 0 ; i <= upbd + 1 ;i++) cout<< sum[i] << " ";
-//     // 2. binary search
-//     int lftIdx = 0;
-//     int ritIdx = upbd;
-//     int midIdx;
-//     int sIdx = 0;
-//     int result = 0;
-//     int Idx = 0;
-//     for (sIdx = 0 ;sIdx <= upbd ;sIdx++) { // sIdx 是队首
-//         // binary search
-//         // int lowerBound (int [] nums ,int [] sum, int sIdx, int target, int lftIdx,int ritIdx) 
-//         Idx = lowerBound(nums , sum , sIdx, target, lftIdx, ritIdx);
-//         result = (Idx)
-//     }
-        
-//     return 0;
-// }
+    // int nums[3] = {1,4,4};
+    // int target = 1;
+    // int length = 3;
+    // def
+    
+    int i;
+    int upbd = length - 1; 
+    int sum[100000 + 1];
+    // 1. 前缀和
+    sum[0] = 0;
+    for (i = 1; i <= upbd + 1; i++) { // sum[1]表示前1个前缀和
+        sum[i] += (sum[i - 1] + nums[i - 1]);
+    }
+    // for (i = 0 ; i <= upbd + 1 ;i++) cout<< sum[i] << " ";
+    //0 2 5 6 8 12 15
+
+    // 2. binary search
+    int lftIdx = 0;
+    int ritIdx = upbd + 1;
+    int midIdx;
+    int sIdx = 0;
+    int result = 100001;
+    int Idx = 0;
+    // for (sIdx = 1 ;sIdx <= upbd ;sIdx++) { // sIdx 是队首
+    //0 2 5 6 8 12 15
+    for (sIdx = 0 ;sIdx <= upbd + 1; sIdx++) { // sIdx 是队首
+        // binary search
+        ritIdx = upbd + 1;
+        lftIdx = 0;
+        while (lftIdx < ritIdx) { // 区间[)
+            midIdx = (ritIdx + lftIdx) / 2;
+            if (sum[midIdx] - sum[sIdx] < target) { // > target midIdex的右边及其本身
+                lftIdx = midIdx + 1;
+            } else { // if (target < sum[midIdx] - sum[sIdx])
+                ritIdx = midIdx;
+            }
+        }
+        cout << sum[midIdx] - sum[sIdx] << " ";
+        // 先判断是否 输出0
+        if (sum[midIdx] - sum[sIdx] >= target && midIdx - sIdx < result) {
+            result = midIdx - sIdx;
+        }
+    }
+    result = (result == 100001) ? 0 : result;
+    cout << result;
+    return 0;
+}
