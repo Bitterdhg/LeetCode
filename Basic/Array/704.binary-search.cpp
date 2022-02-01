@@ -7,8 +7,8 @@
 // 2
 // 
 
-// Approch 1 : 普通二分法
-// 综合实践复杂度： 1.5log（n）
+// // Approch 1 : 普通二分法
+// // 综合实践复杂度： 1.5log（n）
 // # include <iostream>
 // # include <vector>
 // using namespace std;
@@ -34,8 +34,8 @@
 //     return 0;
 // }
 
-// Approach 2 : （Fib查找）
-// 综合时间复杂度 1.46log（n）
+// // Approach 2 : （Fib查找）
+// // 综合时间复杂度 1.46log（n）
 // # include <iostream>
 // # include <vector>
 // using namespace std;
@@ -61,7 +61,7 @@
 //     return 0;
 // }
 
-// Approach 3：平衡版本
+// // Approach 3：平衡版本
 // # include <iostream>
 // # include <vector>
 // using namespace std;
@@ -87,28 +87,66 @@
 //     return 0;
 // }
 
-// Todo
-// Approach 4: upperBound 
-// # include <iostream>
-// # include <vector>
-// using namespace std;
+// // Approach 4: lowerBound 
+// // 小于等于 target的最小值
+# include <iostream>
+# include <vector>
+using namespace std;
 
-// int main() {
-//     // def
-//     int nums[6] = {-1,0,3,5,9,12}, target = 3;
-//     int left = 0 ,right = 5;
-//     int mid = 0;
-//     while (left <= right){ // 改进!!
-//         //                     区间：[0, left] < target(mid) <= [right, n-1]
-//         mid = (left + right) / 2;
-//         // search
-//         if (target <= nums[mid]) { // search by left
-//             right = mid - 1;
-//         } else {                  // search by right
-//             left = mid; 
-//         }
-//     } //left = right
-//     cout << nums[left];
-//     // not find
-//     return 0;
-// }
+int main() {
+    // def
+    int nums[6] = {1,1,1,1,1,1}, target = 3;
+    int left = 0 ,right = 5;  // index
+    int mid = 0; // index
+    // 重点1
+    while (left < right){ // 区间：[left, mid) [mid, right)
+        //                     
+        mid = (left + right) / 2;
+        // search
+        // 重点2
+        if (target < nums[mid]) { // search by left
+            right = mid;
+        } else {                  // search by right
+            left = mid + 1; 
+        }
+    } //left = right
+    // 重点3
+    cout << "小于等于 target 的最大值：" << nums[left - 1] << endl; // 没有特别很想明白为啥-1
+    cout << "小于等于 target 的index：" << left - 1 << endl;
+    cout << "大于target 的最小值：" << nums[left] << endl;
+    cout << "大于target 的index：" << left;
+    // not find
+    return 0;
+}
+
+// Approach 5: upperbound
+// 小于等于 target的最小值
+# include <iostream>
+# include <vector>
+using namespace std;
+
+int main() {
+    // def
+    int nums[6] = {3,5,6,7,8,10}, target = 6;
+    int left = 0 ,right = 5;  // index
+    int mid = 0; // index
+    // 重点1
+    while (left < right){ // 区间：[left, mid) [mid, right)
+        //                     
+        mid = (left + right) / 2;
+        // search
+        // 重点2
+        if (target <= nums[mid]) { // search by left
+            right = mid;
+        } else {                  // search by right
+            left = mid + 1; 
+        }
+    } //left = right
+    // 重点3
+    cout << "小于 target 的最大值：" << nums[left - 1] << endl; // 没有特别很想明白为啥-1
+    cout << "小于 target 的index：" << left - 1 << endl;
+    cout << "大于等于target 的最小值：" << nums[left] << endl;
+    cout << "大于等于target 的index：" << left;
+    // not find
+    return 0;
+}

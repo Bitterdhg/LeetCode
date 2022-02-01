@@ -93,56 +93,63 @@ using namespace std;
 
 //Approach 3:前缀和 + 二分查找
 // 时间复杂度：总时间复杂度是O(nlogn)
-
-// Todo upperbound
-
+//                                 11
+// 0 10 15 28 32 40 44 49 60 74 83 99 109 129 137
+int upperBound (int nums[], int left, int right, int target, int base) {
+    int mid;
+    while (left < right){ // 区间：[left, mid) [mid, right)
+        //                     
+        mid = (left + right) / 2;
+        // search
+        // 重点2
+        if (target <= nums[mid] - base) { // search by left
+            right = mid;
+        } else {                  // search by right
+            left = mid + 1; 
+        }
+    } //left = right
+    // 重点3
+    return left; // 大于的最小值
+}
 
 int main() {
-    int nums[6] = {2,3,1,2,4,3};
-    int target = 7;
-    int length = 6;
+    // int nums[6] = {2,3,1,2,4,3};
+    // int target = 7;
+    // int length = 6;
 
     // int nums[3] = {1,4,4};
     // int target = 1;
     // int length = 3;
-    // def
+
+    // int nums[3] = {1,3,3};
+    // int target = 4;
+    // int length = 3;
+
+    int target = 80;
+    int nums[14] = {10,5,13,4,8,4,5,11,14,9,16,10,20,8};
+    int length = 14;
     
-    int i;
-    int upbd = length - 1; 
-    int sum[100000 + 1];
+    // def
+    int i = 0;
+    int sum[100000 + 1] = {}; // 初始化很重要，否则Leetcode多样例输入的时候会出错。 
     // 1. 前缀和
     sum[0] = 0;
-    for (i = 1; i <= upbd + 1; i++) { // sum[1]表示前1个前缀和
+    for (i = 1; i <= length; i++) { // sum[1]表示前1个前缀和
         sum[i] += (sum[i - 1] + nums[i - 1]);
     }
-    // for (i = 0 ; i <= upbd + 1 ;i++) cout<< sum[i] << " ";
-    //0 2 5 6 8 12 15
-
+    // for (i = 0; i <= length; i++) { // sum[1]表示前1个前缀和
+    //     cout << sum[i] <<" ";
+    // }// 0 10 15 28 32 40 44 49 60 74 83 99 109 129 137
     // 2. binary search
-    int lftIdx = 0;
-    int ritIdx = upbd + 1;
-    int midIdx;
     int sIdx = 0;
     int result = 100001;
-    int Idx = 0;
-    // for (sIdx = 1 ;sIdx <= upbd ;sIdx++) { // sIdx 是队首
-    //0 2 5 6 8 12 15
-    for (sIdx = 0 ;sIdx <= upbd + 1; sIdx++) { // sIdx 是队首
+    int index = -1;
+    for (sIdx = 0 ;sIdx <= length; sIdx++) { // sIdx 是队首
         // binary search
-        ritIdx = upbd + 1;
-        lftIdx = 0;
-        while (lftIdx < ritIdx) { // 区间[)
-            midIdx = (ritIdx + lftIdx) / 2;
-            if (sum[midIdx] - sum[sIdx] < target) { // > target midIdex的右边及其本身
-                lftIdx = midIdx + 1;
-            } else { // if (target < sum[midIdx] - sum[sIdx])
-                ritIdx = midIdx;
-            }
-        }
-        cout << sum[midIdx] - sum[sIdx] << " ";
-        // 先判断是否 输出0
-        if (sum[midIdx] - sum[sIdx] >= target && midIdx - sIdx < result) {
-            result = midIdx - sIdx;
+        //int upperBound (int nums[], int left, int right, int target, int base)
+        index = upperBound (sum, 0, length,  target, sum[sIdx]);
+        if ((sum[index] - sum[sIdx] >= target) && ((index - sIdx) < result)) {
+            result = index - sIdx;
         }
     }
     result = (result == 100001) ? 0 : result;
