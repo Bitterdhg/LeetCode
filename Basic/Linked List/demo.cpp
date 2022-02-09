@@ -2,10 +2,12 @@
 using namespace std;
 
 //定义结构体
-struct ListNode{
+struct ListNode {
 	int val;
-	ListNode* next;
+	ListNode * next;
+	ListNode(int val) : val(val), next(NULL){}
 };
+
 
 class Solution
 {
@@ -16,9 +18,7 @@ public:
 		int i;
 		ListNode* phead=head; //不破坏头指针
 		for(i=1;i<10;i++){
-			ListNode* node=new ListNode;
-			node->val=i;
-			node->next=NULL;
+			ListNode* node=new ListNode (i);
 			phead->next=node;
 			phead=node;
 		}
@@ -38,13 +38,15 @@ public:
 	}		
 };
 
+
 int main()
 {
-	ListNode* head=new ListNode;
+	ListNode* head=new ListNode (0);
 	Solution ll;
-	head->val=0;
-	head->next=NULL;
 	ll.createList(head);
+	// ---------------------
+
+	// ---------------------
 	ll.printList(head);
 	return 0;
 }

@@ -175,7 +175,7 @@ ListNode * reverse (ListNode * left, ListNode * reve) {
 }
 
 int main() {
-	ListNode* head=new ListNode (0);
+	ListNode* head = new ListNode (0);
 	Solution ll;
 	ll.createList(head);
     ll.printList(head);
