@@ -50,4 +50,3 @@ int main()
 	ll.printList(head);
 	return 0;
 }
-

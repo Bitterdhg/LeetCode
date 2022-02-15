@@ -215,7 +215,4 @@ int main()
     //     // 3. out jiaohui head / NULL
 
     // }
-    
-	
 }
-
