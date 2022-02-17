@@ -47,6 +47,5 @@ int main (){
             } // if (set.find(n) != set.end())
         } //if (n == 1)
     }
-
     return 0;
 }
