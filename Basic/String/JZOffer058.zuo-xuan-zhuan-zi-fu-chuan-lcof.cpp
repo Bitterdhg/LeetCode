@@ -1,44 +1,104 @@
-// ×Ö·û´®µÄ×óĞı×ª²Ù×÷ÊÇ°Ñ×Ö·û´®Ç°ÃæµÄÈô¸É¸ö×Ö·û×ªÒÆµ½×Ö·û´®µÄÎ²²¿¡£
-// Çë¶¨ÒåÒ»¸öº¯ÊıÊµÏÖ×Ö·û´®×óĞı×ª²Ù×÷µÄ¹¦ÄÜ¡£
-// ±ÈÈç£¬ÊäÈë×Ö·û´®"abcdefg"ºÍÊı×Ö2£¬¸Ãº¯Êı½«·µ»Ø×óĞı×ªÁ½Î»µÃµ½µÄ½á¹û"cdefgab"¡£
+// å­—ç¬¦ä¸²çš„å·¦æ—‹è½¬æ“ä½œæ˜¯æŠŠå­—ç¬¦ä¸²å‰é¢çš„è‹¥å¹²ä¸ªå­—ç¬¦è½¬ç§»åˆ°å­—ç¬¦ä¸²çš„å°¾éƒ¨ã€‚
+// è¯·å®šä¹‰ä¸€ä¸ªå‡½æ•°å®ç°å­—ç¬¦ä¸²å·¦æ—‹è½¬æ“ä½œçš„åŠŸèƒ½ã€‚
+// æ¯”å¦‚ï¼Œè¾“å…¥å­—ç¬¦ä¸²"abcdefg"å’Œæ•°å­—2ï¼Œè¯¥å‡½æ•°å°†è¿”å›å·¦æ—‹è½¬ä¸¤ä½å¾—åˆ°çš„ç»“æœ"cdefgab"ã€‚
 
-// ÊäÈë: s = "abcdefg", k = 2
-// Êä³ö: "cdefgab"
+// è¾“å…¥: s = "abcdefg", k = 2
+// è¾“å‡º: "cdefgab"
 
-// ×Ô½âÒ»£ºĞÂstring
+// è‡ªè§£ä¸€ï¼šæ–°string
 // too simple
 
-// ×Ô½â¶ş£ºresize
+// è‡ªè§£äºŒï¼šresize
+// å°†lenå˜ä¸ºä¸¤å€ç„¶åç§»åŠ¨
+// # include <iostream>
+// # include <vector>
+// # include <algorithm>
+// using namespace std;
+
+// int main() {
+//     string s = "lrloseumgh";
+//     int k = 6;
+
+//     //def
+//     int len = s.length();
+//     int left = 0;
+//     int right = len - 1;
+
+//     //1. å…ˆå°†å‰é¢çš„åˆšåœ¨åé¢
+//     s.resize(len * 2);
+//     for (left = 0; left <= k - 1; left++) {
+//         s[++right] = s[left];
+//     }
+//     // cout << s;
+
+//     // 2. å‰ç§»
+//     right = k - 1;
+//     for (left = 0; left <= len - 1; left++) {
+//         s[left] = s[++right];
+//     }
+//     s.resize(len);
+//     cout << s;
+
+//     return 0;
+// }
+
+// è‡ªè§£ä¸‰: æ²¡æœ‰å¤šä½™çš„ç©ºé—´æµªè´¹
+// åå¤å‰ç§» é€Ÿåº¦å·¨æ…¢
+// # include <iostream>
+// # include <vector>
+// # include <algorithm>
+// using namespace std;
+
+// void forwardMove(string &s){
+//     for (int i = 1; i < s.length(); i++) {
+//         s[i-1] = s[i];
+//     }
+// }
+
+// string reverseLeftWords(string s, int n) {
+//     char tmp;
+//     for (int i = 0; i < n; i++) {
+//         tmp = s[0];
+//         forwardMove(s);
+//         s[s.length() - 1] = tmp;
+//     }
+//     return s;
+// }
+
+// int main() {
+//     string s = "lrloseumgh";
+//     int k = 6;
+//     cout << reverseLeftWords(s, k);
+//     return 0;
+// }
+
+// æ³•å››: é¢˜è§£çš„æ€è·¯
+// ä¸151. é¢ å€’å­—ç¬¦ä¸²ä¸­çš„å•è¯ æœ‰å¼‚æ›²åŒå·¥ä¹‹å¦™
 # include <iostream>
 # include <vector>
 # include <algorithm>
 using namespace std;
 
+void reverseStr(string &s, int start, int end) {
+    for (int i = 0; i < (end-start)/2; i++) {
+        swap(s[start + i], s[(end-1) - i]);
+    }
+}
 
+void reverseWord(string &s, int n){
+    reverseStr(s, 0, s.length()-n); //cdefgba
+    reverseStr(s, s.length()-n, s.length());
+}
+
+string reverseLeftWords(string s, int n) {
+    reverseStr(s, 0, s.length());// gfedcba
+    reverseWord(s, n);
+    return s;
+}
 
 int main() {
-    string s = "lrloseumgh";
-    int k = 6;
-
-    //def
-    int len = s.length();
-    int left = 0;
-    int right = len - 1;
-
-    //1. ÏÈ½«Ç°ÃæµÄ¸ÕÔÚºóÃæ
-    s.resize(len * 2);
-    for (left = 0; left <= k - 1; left++) {
-        s[++right] = s[left];
-    }
-    // cout << s;
-
-    // 2. Ç°ÒÆ
-    right = k - 1;
-    for (left = 0; left <= len - 1; left++) {
-        s[left] = s[++right];
-    }
-    s.resize(len);
-    cout << s;
-
+    string s = "abcdefg";
+    int k = 2;
+    cout << reverseLeftWords(s, k);
     return 0;
 }

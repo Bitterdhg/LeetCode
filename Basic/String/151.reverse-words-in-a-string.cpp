@@ -1,10 +1,10 @@
-// ¸øÄãÒ»¸ö×Ö·û´® s £¬Öğ¸ö·­×ª×Ö·û´®ÖĞµÄËùÓĞ µ¥´Ê ¡£
+// ç»™ä½ ä¸€ä¸ªå­—ç¬¦ä¸² s ï¼Œé€ä¸ªç¿»è½¬å­—ç¬¦ä¸²ä¸­çš„æ‰€æœ‰ å•è¯ ã€‚
 
-// µ¥´Ê ÊÇÓÉ·Ç¿Õ¸ñ×Ö·û×é³ÉµÄ×Ö·û´®¡£s ÖĞÊ¹ÓÃÖÁÉÙÒ»¸ö¿Õ¸ñ½«×Ö·û´®ÖĞµÄ µ¥´Ê ·Ö¸ô¿ª¡£
+// å•è¯ æ˜¯ç”±éç©ºæ ¼å­—ç¬¦ç»„æˆçš„å­—ç¬¦ä¸²ã€‚s ä¸­ä½¿ç”¨è‡³å°‘ä¸€ä¸ªç©ºæ ¼å°†å­—ç¬¦ä¸²ä¸­çš„ å•è¯ åˆ†éš”å¼€ã€‚
 
-// ÇëÄã·µ»ØÒ»¸ö·­×ª s ÖĞµ¥´ÊË³Ğò²¢ÓÃµ¥¸ö¿Õ¸ñÏàÁ¬µÄ×Ö·û´®¡£
+// è¯·ä½ è¿”å›ä¸€ä¸ªç¿»è½¬ s ä¸­å•è¯é¡ºåºå¹¶ç”¨å•ä¸ªç©ºæ ¼ç›¸è¿çš„å­—ç¬¦ä¸²ã€‚
 
-// ×Ô½âÒ»£ºÈıÖ¸Õë £¨old£©2 £¨new£©1¸ö
+// è‡ªè§£ä¸€ï¼šä¸‰æŒ‡é’ˆ ï¼ˆoldï¼‰2 ï¼ˆnewï¼‰1ä¸ª
 // # include <iostream>
 // # include <vector>
 // # include <algorithm>
@@ -22,24 +22,24 @@
 // int main() {
 //     string s =  "a good   example";
 //     //def 
-//     s = ' ' + s; // ÊÖ¶¯ÔÚÇ°ÃæÔö¼ÓÒ»¸ö¿Õ¸ñ
+//     s = ' ' + s; // æ‰‹åŠ¨åœ¨å‰é¢å¢åŠ ä¸€ä¸ªç©ºæ ¼
 //     int i = 0;
 //     int length = s.length();
-//     int oldFirst = length - 1;// ÀÏµÄ´ÊÓïµÄµÚÒ»¸ö×ÖÄ¸µÄindex
-//     int oldLast = length - 1; // ÀÌµÄ´ÊÓïµÄ×îºóÒ»¸ö×ÖÄ¸µÄindex
-//     // int newLast = 0; // ĞÂµÄstringµÄÎ²°ÍµÄindex
+//     int oldFirst = length - 1;// è€çš„è¯è¯­çš„ç¬¬ä¸€ä¸ªå­—æ¯çš„index
+//     int oldLast = length - 1; // æçš„è¯è¯­çš„æœ€åä¸€ä¸ªå­—æ¯çš„index
+//     // int newLast = 0; // æ–°çš„stringçš„å°¾å·´çš„index
 //     string newStr;
 
 //     // find blank in old
-//     while (oldFirst >= 0) { // Çø¼ä[]
+//     while (oldFirst >= 0) { // åŒºé—´[]
 //         // find blank in old
 //         if (s[oldFirst] == ' ') {
 //             oldFirst --;
 //             oldLast --;
 //         } else { //  find letter
-//             if (s[oldFirst - 1] == ' ') { //oldFirst µ½×îºóÒ»¸ö×ÖÄ¸ÁË
+//             if (s[oldFirst - 1] == ' ') { //oldFirst åˆ°æœ€åä¸€ä¸ªå­—æ¯äº†
                 
-//                 // void ¸´ÖÆ Çø¼ä[]
+//                 // void å¤åˆ¶ åŒºé—´[]
 //                 // void copy2new(string &newstr, string oldstr, int oldStart, int oldLast) 
 //                 copy2new (newStr, s, oldFirst, oldLast);
                 
@@ -59,47 +59,128 @@
 // }
 
 
-// Ìâ½â2£ºÊ¹ÓÃÓïÑÔÌØĞÔ
+// é¢˜è§£2ï¼šä½¿ç”¨è¯­è¨€ç‰¹æ€§
+// # include <iostream>
+// # include <vector>
+// # include <algorithm>
+// using namespace std;
+
+// int main() {
+//     string s =  "a good   example";
+//     //def 
+//     s = ' ' + s; // æ‰‹åŠ¨åœ¨å‰é¢å¢åŠ ä¸€ä¸ªç©ºæ ¼
+//     int i = 0;
+//     int length = s.length();
+//     int oldFirst = length - 1;// è€çš„è¯è¯­çš„ç¬¬ä¸€ä¸ªå­—æ¯çš„index
+//     int oldLast = length - 1; // æçš„è¯è¯­çš„æœ€åä¸€ä¸ªå­—æ¯çš„index
+//     // int newLast = 0; // æ–°çš„stringçš„å°¾å·´çš„index
+//     string newStr;
+
+//     // find blank in old
+//     while (oldFirst >= 0) { // åŒºé—´[]
+//         // find blank in old
+//         if (s[oldFirst] == ' ') {
+//             oldFirst --;
+//             oldLast --;
+//         } else { //  find letter
+//             if (s[oldFirst - 1] == ' ') { //oldFirst åˆ°æœ€åä¸€ä¸ªå­—æ¯äº†
+                
+//                 // void å¤åˆ¶ åŒºé—´[]
+//                 // void copy2new(string &newstr, string oldstr, int oldStart, int oldLast) 
+//                 copy2new (newStr, s, oldFirst, oldLast);
+                
+//                 oldFirst = oldFirst - 1;
+//                 oldLast  = oldFirst;
+//             } else {
+//                 oldFirst --;
+//             }   //if (s[oldFirst - 1] == ' ') 
+//         }// if (s[oldFirst] == " ")
+//     }
+    
+//     // out
+//     newStr.pop_back();  
+//     cout << newStr.length()<< endl;
+//     cout << newStr;
+//     return 0;
+// }
+
+// 5.18 é‡å¼€ç³»åˆ—
 # include <iostream>
 # include <vector>
 # include <algorithm>
 using namespace std;
 
-int main() {
-    string s =  "a good   example";
-    //def 
-    s = ' ' + s; // ÊÖ¶¯ÔÚÇ°ÃæÔö¼ÓÒ»¸ö¿Õ¸ñ
-    int i = 0;
-    int length = s.length();
-    int oldFirst = length - 1;// ÀÏµÄ´ÊÓïµÄµÚÒ»¸ö×ÖÄ¸µÄindex
-    int oldLast = length - 1; // ÀÌµÄ´ÊÓïµÄ×îºóÒ»¸ö×ÖÄ¸µÄindex
-    // int newLast = 0; // ĞÂµÄstringµÄÎ²°ÍµÄindex
-    string newStr;
-
-    // find blank in old
-    while (oldFirst >= 0) { // Çø¼ä[]
-        // find blank in old
-        if (s[oldFirst] == ' ') {
-            oldFirst --;
-            oldLast --;
-        } else { //  find letter
-            if (s[oldFirst - 1] == ' ') { //oldFirst µ½×îºóÒ»¸ö×ÖÄ¸ÁË
-                
-                // void ¸´ÖÆ Çø¼ä[]
-                // void copy2new(string &newstr, string oldstr, int oldStart, int oldLast) 
-                copy2new (newStr, s, oldFirst, oldLast);
-                
-                oldFirst = oldFirst - 1;
-                oldLast  = oldFirst;
-            } else {
-                oldFirst --;
-            }   //if (s[oldFirst - 1] == ' ') 
-        }// if (s[oldFirst] == " ")
+void reverseStr(string &s, int start, int end) {
+    // input : 
+    //      start : start_index
+    //      end :   end_index 
+    // åŒºé—´: [ )
+    for (int i = 0; i < (end - start)/2; i++){
+        swap(s[start + i], s[(end-1) - i]);
     }
+}
+
+string eraseBlank(string &s) {
+    // double point
+    // 2 cases : swap or slowpoint ++
+    // fastpoint must be ++
+
+    int slowPoint = 0;
+    int fastPoint = 0;
+    int begin = 0;
+    // begin
+    while (s[slowPoint] == ' ') {
+        slowPoint++;
+    }
+    begin = slowPoint;
+    // middle
+    fastPoint = slowPoint;
+    while(fastPoint < s.length()) {
+        if (s[fastPoint] == ' ' && s[fastPoint-1] == ' ') {
+            fastPoint++;
+        } else {
+            s[slowPoint] = s[fastPoint];
+            fastPoint++;
+            slowPoint++;
+        }
+    }
+    // end
+    slowPoint--; // slowPointåœ¨å¤–é¢
+    while (s[slowPoint] == ' ') {
+        slowPoint --;
+    }
+    return s.substr(begin, slowPoint - begin + 1);
+}
+
+void reverseWord(string &s) {
+    int len = s.length();
+    int begin = 0;
+    for (int i = 0; i < len; i++) {
+        if (s[i] == ' ') {
+            reverseStr(s, begin, i);
+            begin = i + 1;
+        }
+    }
+    reverseStr(s, begin, len);
+    // reverseStr(s.substr(begin, len - begin));
+}
+
+string reverseWords(string s) {
     
-    // out
-    newStr.pop_back();
-    cout << newStr.length()<< endl;
-    cout << newStr;
+    reverseStr(s, 0, s.length());
+    s = eraseBlank(s);
+    reverseWord(s);
+    return s;
+    }
+ 
+
+
+int main(){
+    // string s = " the  sky  is  blue ";
+    // string s = "  hello world  ";
+    string s = "a good   example";
+    string res = "";
+    res = reverseWords(s);
+    cout << res<<"|";
     return 0;
 }
