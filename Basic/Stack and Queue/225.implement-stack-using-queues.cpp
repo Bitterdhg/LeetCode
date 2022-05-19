@@ -1,6 +1,6 @@
-// ÇëÄã½öÊ¹ÓÃÁ½¸ö¶ÓÁĞÊµÏÖÒ»¸öºóÈëÏÈ³ö£¨LIFO£©µÄÕ»£¬²¢Ö§³ÖÆÕÍ¨Õ»µÄÈ«²¿ËÄÖÖ²Ù×÷£¨push¡¢top¡¢pop ºÍ empty£©¡£
+// è¯·ä½ ä»…ä½¿ç”¨ä¸¤ä¸ªé˜Ÿåˆ—å®ç°ä¸€ä¸ªåå…¥å…ˆå‡ºï¼ˆLIFOï¼‰çš„æ ˆï¼Œå¹¶æ”¯æŒæ™®é€šæ ˆçš„å…¨éƒ¨å››ç§æ“ä½œï¼ˆpushã€topã€pop å’Œ emptyï¼‰ã€‚
 
-// ÊµÏÖ MyStack Àà£º
+// å®ç° MyStack ç±»ï¼š
 # include <iostream>
 # include <stack>         
 # include <vector>     
@@ -17,7 +17,7 @@ public:
 
     }
 
-    // void push(int x) ½«ÔªËØ x Ñ¹ÈëÕ»¶¥¡£
+    // void push(int x) å°†å…ƒç´  x å‹å…¥æ ˆé¡¶ã€‚
     void push(int x) {
         // 1. push cur
         tempQueue.push(x);
@@ -35,19 +35,19 @@ public:
         }
     }
     
-    // int pop() ÒÆ³ı²¢·µ»ØÕ»¶¥ÔªËØ¡£
+    // int pop() ç§»é™¤å¹¶è¿”å›æ ˆé¡¶å…ƒç´ ã€‚
     int pop() {
         int num = Queue.front();
         Queue.pop();
         return num;
     }
     
-    // int top() ·µ»ØÕ»¶¥ÔªËØ¡£
+    // int top() è¿”å›æ ˆé¡¶å…ƒç´ ã€‚
     int top() {
         return Queue.front();
     }
     
-    // boolean empty() Èç¹ûÕ»ÊÇ¿ÕµÄ£¬·µ»Ø true £»·ñÔò£¬·µ»Ø false ¡£
+    // boolean empty() å¦‚æœæ ˆæ˜¯ç©ºçš„ï¼Œè¿”å› true ï¼›å¦åˆ™ï¼Œè¿”å› false ã€‚
     bool empty() {
         if (Queue.empty() == true) {
             return true;
@@ -61,9 +61,9 @@ int main (){
     MyStack stack;
     stack.push(1);
     stack.push(2);
-    cout << stack.top() << endl;  // ·µ»Ø 2
-    cout << stack.pop() << endl;   // ·µ»Ø 2
-    cout << stack.pop() << endl;   // ·µ»Ø 1
-    cout << stack.empty() << endl; // ·µ»Ø true
+    cout << stack.top() << endl;  // è¿”å› 2
+    cout << stack.pop() << endl;   // è¿”å› 2
+    cout << stack.pop() << endl;   // è¿”å› 1
+    cout << stack.empty() << endl; // è¿”å› true
     return 0;
 }

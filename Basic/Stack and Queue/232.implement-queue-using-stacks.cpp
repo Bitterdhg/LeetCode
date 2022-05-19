@@ -1,12 +1,12 @@
-//ÇëÄã½öÊ¹ÓÃÁ½¸öÕ»ÊµÏÖÏÈÈëÏÈ³ö¶ÓÁĞ
+//è¯·ä½ ä»…ä½¿ç”¨ä¸¤ä¸ªæ ˆå®ç°å…ˆå…¥å…ˆå‡ºé˜Ÿåˆ—
 
-// void push(int x) ½«ÔªËØ x ÍÆµ½¶ÓÁĞµÄÄ©Î²
-// int pop() ´Ó¶ÓÁĞµÄ¿ªÍ·ÒÆ³ı²¢·µ»ØÔªËØ
-// int peek() ·µ»Ø¶ÓÁĞ¿ªÍ·µÄÔªËØ
-// boolean empty() Èç¹û¶ÓÁĞÎª¿Õ£¬·µ»Ø true £»·ñÔò£¬·µ»Ø false
+// void push(int x) å°†å…ƒç´  x æ¨åˆ°é˜Ÿåˆ—çš„æœ«å°¾
+// int pop() ä»é˜Ÿåˆ—çš„å¼€å¤´ç§»é™¤å¹¶è¿”å›å…ƒç´ 
+// int peek() è¿”å›é˜Ÿåˆ—å¼€å¤´çš„å…ƒç´ 
+// boolean empty() å¦‚æœé˜Ÿåˆ—ä¸ºç©ºï¼Œè¿”å› true ï¼›å¦åˆ™ï¼Œè¿”å› false
 
-// Ìâ½âÆô·¢£ºË«stackÄ£Äâ
-// ÓĞ2¸öÕ»£¨·Ö±ğÊÇÊäÈëÕ» Êä³öÕ»£©È»ºóËæ×ÅÏàÓ¦µÄ²Ù×÷£¬À´»Ø×ª»¯
+// é¢˜è§£å¯å‘ï¼šåŒstackæ¨¡æ‹Ÿ
+// æœ‰2ä¸ªæ ˆï¼ˆåˆ†åˆ«æ˜¯è¾“å…¥æ ˆ è¾“å‡ºæ ˆï¼‰ç„¶åéšç€ç›¸åº”çš„æ“ä½œï¼Œæ¥å›è½¬åŒ–
 # include <iostream>
 # include <stack>         
 # include <vector>     
@@ -18,9 +18,9 @@ public:
     stack <int> inStack;
     stack <int> ouStack;
 
-    // state Ö¸µ±Ç°×´Ì¬£º
-    // ÊäÈëÕ» £ºtrue 
-    // Êä³öÕ»£º false
+    // state æŒ‡å½“å‰çŠ¶æ€ï¼š
+    // è¾“å…¥æ ˆ ï¼štrue 
+    // è¾“å‡ºæ ˆï¼š false
     bool state = true;
 
     /** Initialize your data structure here. */
@@ -30,7 +30,7 @@ public:
 
     /** Push element x to the back of queue. */
     void push(int x) {
-        // ÊÇÊä³öÕ»£¨false×´Ì¬£©
+        // æ˜¯è¾“å‡ºæ ˆï¼ˆfalseçŠ¶æ€ï¼‰
         // convert
         if (!state) {
             while (!ouStack.empty()) {
@@ -45,7 +45,7 @@ public:
 
     /** Removes the element from in front of queue and returns that element. */
     int pop() {
-        // ÊÇÊäÈëÕ»£¨true×´Ì¬£©
+        // æ˜¯è¾“å…¥æ ˆï¼ˆtrueçŠ¶æ€ï¼‰
         // convert
         if (state) {
             while (!inStack.empty()) {
@@ -63,7 +63,7 @@ public:
     /** Get the front element. */
     int peek() {
         int num = this -> pop();
-        // Êä³öÕ» µÄ×´Ì¬
+        // è¾“å‡ºæ ˆ çš„çŠ¶æ€
         ouStack.push(num);
         return num;
     }
@@ -81,9 +81,9 @@ int main (){
     MyQueue queue;
     queue.push(1);
     queue.push(2);
-    cout << queue.peek() << endl;  // ·µ»Ø 1
-    cout << queue.pop() << endl;   // ·µ»Ø 1
-    cout << queue.pop() << endl;   // ·µ»Ø 2
-    cout << queue.empty() << endl; // ·µ»Ø true
+    cout << queue.peek() << endl;  // è¿”å› 1
+    cout << queue.pop() << endl;   // è¿”å› 1
+    cout << queue.pop() << endl;   // è¿”å› 2
+    cout << queue.empty() << endl; // è¿”å› true
     return 0;
 }
