@@ -9,7 +9,7 @@ int main() {
     int bagWeight = 4;
     
     // 1. def
-    vector<vector<int>> dp(weight.size(), vector<int> (bagWeight, 0));
+    vector<vector<int>> dp(weight.size(), vector<int> (bagWeight + 1, 0));
     // dp[i][j]
     // i 为横坐标 代表 第i个物品
     // j 为纵坐标 代表bag的最大容量
